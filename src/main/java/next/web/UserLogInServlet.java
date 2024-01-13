@@ -5,6 +5,7 @@ import next.model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,13 +14,14 @@ import java.io.IOException;
 
 import static org.reflections.Reflections.log;
 
+@WebServlet("/user/login")
 public class UserLogInServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(); //requestBody로 정보 받아온 것. (Post방식)
+        HttpSession session = req.getSession(); //requestBody로 정보 받아온 것. 쿼리로 하면 주소에 아이디 비번 뜨니까~
         String userId = req.getParameter("userId");
         String password = req.getParameter("password");
         User user = DataBase.findUserById(req.getParameter("userId"));
