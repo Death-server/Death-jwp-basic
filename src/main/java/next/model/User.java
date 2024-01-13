@@ -1,7 +1,7 @@
 package next.model;
 
 public class User {
-    private String userId;
+    private final String userId;
     private String password;
     private String name;
     private String email;
@@ -27,6 +27,12 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public void updateUser(String password, String name, String email) {
+        this.password = password;
+        this.name = name;
+        this.email = email;
     }
 
     @Override
@@ -59,11 +65,9 @@ public class User {
         } else if (!name.equals(other.name))
             return false;
         if (userId == null) {
-            if (other.userId != null)
-                return false;
-        } else if (!userId.equals(other.userId))
-            return false;
-        return true;
+            return other.userId == null;
+        }
+        return userId.equals(other.userId);
     }
 
 }
