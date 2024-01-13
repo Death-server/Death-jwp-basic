@@ -20,5 +20,6 @@ public class ListUserServlet extends HttpServlet {
         req.setAttribute("users", DataBase.findAll());
         RequestDispatcher rd = req.getRequestDispatcher("/user/list.jsp");
         rd.forward(req, resp);
+
     }
 }
