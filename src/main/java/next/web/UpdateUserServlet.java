@@ -39,9 +39,9 @@ public class UpdateUserServlet extends HttpServlet {
         Object value = session.getAttribute("user");
         if (value != null) {
             User loggedInUser = (User) value;
-            String updatedUserPassword = req.getParameter("updatedUserPassword");
-            String updatedUserName = req.getParameter("updatedUserName");
-            String updatedUserEmail = req.getParameter("updatedUserEmail");
+            String updatedUserPassword = req.getParameter("password");
+            String updatedUserName = req.getParameter("name");
+            String updatedUserEmail = req.getParameter("email");
 
             User updatedUser = new User(
                     loggedInUser.getUserId(),
@@ -55,7 +55,7 @@ public class UpdateUserServlet extends HttpServlet {
                 if (existingUser.getUserId().equals(loggedInUser.getUserId())) {
                     DataBase.addUser(updatedUser);
                     log.debug("user : {}", updatedUser);
-                    resp.sendRedirect("/user/list");
+                    resp.sendRedirect("/");
                 } else {
                     log.debug("권한이 없습니다.");
                     resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Permission denied");

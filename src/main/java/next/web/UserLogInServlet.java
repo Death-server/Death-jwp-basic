@@ -37,7 +37,7 @@ public class UserLogInServlet extends HttpServlet {
                 Cookie cookie = new Cookie("JSESSIONID",sessionId);
                 resp.addCookie(cookie);
                 session.setAttribute("user",user);
-                resp.sendRedirect("/"); //다들 어디 리다이렉트 했어?
+                resp.sendRedirect("/");
             }
             else {
                 req.setAttribute("loginFailed",true);
