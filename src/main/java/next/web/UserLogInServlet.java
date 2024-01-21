@@ -37,7 +37,7 @@ public class UserLogInServlet extends HttpServlet {
                 Cookie cookie = new Cookie("JSESSIONID",sessionId);
                 resp.addCookie(cookie);
                 session.setAttribute("user",user);
-                resp.sendRedirect("/");
+                resp.sendRedirect("/user/list.jsp");
             }
             else {
                 req.setAttribute("loginFailed",true);

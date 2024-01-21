@@ -1,6 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="header.jsp" %>
+<%
+    String userId = request.getParameter("userId");
+    String uuidParam = (String) request.getAttribute("uuid");
+
+
+    HttpSession session = request.getSession();
+    String sessionUuid = (String) session.getAttribute("uuid");
+
+
+    if (uuidParam == null || !uuidParam.equals(sessionUuid)) {
+
+
+        return;
+    }
+%>
+
 
 <div class="container" id="main">
    <div class="col-md-6 col-md-offset-3">
