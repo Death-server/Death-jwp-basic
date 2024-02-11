@@ -1,24 +1,22 @@
 package core.db;
 
-import java.util.Collection;
-import java.util.Map;
-
-import com.google.common.collect.Maps;
-
+import next.dao.UserDao;
 import next.model.User;
 
+import java.util.Collection;
+
 public class DataBase {
-    private static Map<String, User> users = Maps.newHashMap();
+    private final static UserDao userDao = new UserDao();
 
     public static void addUser(User user) {
-        users.put(user.getUserId(), user);
+        userDao.insert(user);
     }
 
     public static User findUserById(String userId) {
-        return users.get(userId);
+        return userDao.findByUserId(userId);
     }
 
     public static Collection<User> findAll() {
-        return users.values();
+        return userDao.findAll();
     }
 }
