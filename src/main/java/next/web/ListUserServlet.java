@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import core.db.DataBase;
 import next.model.User;
 
-@WebServlet("/user/list")
+//@WebServlet("/user/list")
 public class ListUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

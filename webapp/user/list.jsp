@@ -20,7 +20,7 @@
                         <td>${user.email}</td>
                         <c:choose>
                             <c:when test="${sessionScope.user.userId eq user.userId}">
-                                <td><a href="/user/updateForm?userId=${user.userId}" class="btn btn-success" role="button">수정</a>
+                                <td><a href="/users/updateForm" class="btn btn-success" role="button">수정</a>
                                 </td>
                             </c:when>
                         </c:choose>

@@ -70,4 +70,6 @@ public class User {
         return userId.equals(other.userId);
     }
 
+    public void update(User user) {
+    }
 }

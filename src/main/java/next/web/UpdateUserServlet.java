@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = {"/user/update", "/user/updateForm"})
+//@WebServlet(value = {"/user/update", "/user/updateForm"})
 public class UpdateUserServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(UpdateUserServlet.class);
     private static final long serialVersionUID = 1L;
