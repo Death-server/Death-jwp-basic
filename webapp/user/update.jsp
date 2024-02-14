@@ -22,7 +22,7 @@
                   <label for="email">이메일</label>
                   <input type="email" class="form-control" id="email" name="email" placeholder="Email">
               </div>
-              <button type="submit" class="btn btn-success clearfix pull-right">회원가입</button>
+              <button type="submit" class="btn btn-success clearfix pull-right">업데이트</button>
               <div class="clearfix" />
           </form>
         </div>

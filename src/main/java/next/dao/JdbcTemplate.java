@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcTemplate {
+
     public void update(String sql, Object... parameters) throws DataAccessException {
         PreparedStatementSetter pss = createPreparedStatementSetter(parameters);
         update(sql, pss);

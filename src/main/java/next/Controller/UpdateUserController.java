@@ -11,10 +11,9 @@ public class UpdateUserController implements Controller{
     @Override
     public String execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         String userId = httpServletRequest.getParameter("userId");
-
         User user = DataBase.findUserById(userId);
         user.updateUser(httpServletRequest.getParameter("password"), httpServletRequest.getParameter("name"), httpServletRequest.getParameter("email"));
-
+        DataBase.updateUser(user);
         return "redirect:/users";
     }
 }

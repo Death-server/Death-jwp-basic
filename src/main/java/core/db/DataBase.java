@@ -12,6 +12,10 @@ public class DataBase {
         userDao.insert(user);
     }
 
+    public static void updateUser(User user) {
+        userDao.update(user);
+    }
+
     public static User findUserById(String userId) {
         return userDao.findByUserId(userId);
     }
