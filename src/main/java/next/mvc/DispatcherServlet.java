@@ -3,10 +3,11 @@ package next.mvc;
 
 import next.controller.Controller;
 import next.controller.qna.AddAnswerController;
+import next.view.ModelAndView;
+import next.view.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,6 @@ public class DispatcherServlet extends HttpServlet {
 
     private  static final Logger log = LoggerFactory.getLogger(AddAnswerController.class);
     private static final long serialVersionUId = 1L;
-    private final String REDIRECT_PREFIX = "redirect:";
 
     private RequestMapping requestMapping;
 
@@ -38,22 +38,14 @@ public class DispatcherServlet extends HttpServlet {
         Controller controller = requestMapping.findController(requestUri);
 
         try {
-            String viewName = controller.execute(req, resp);
-            if (viewName != null) {
-                move(viewName, req, resp);
-            }
+            ModelAndView modelAndView = controller.execute(req, resp);
+            View view = modelAndView.getView();
+            view.render(modelAndView.getModel(), req, resp);
+
             log.debug("controller : {}", controller);
         } catch(Throwable e) {
             throw  new ServletException(e.getMessage());
         }
     }
 
-    private void move(String viewName, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(viewName.startsWith(REDIRECT_PREFIX)) {
-            resp.sendRedirect(viewName.substring(REDIRECT_PREFIX.length()));
-            return;
-        }
-        RequestDispatcher rd = req.getRequestDispatcher(viewName);
-        rd.forward(req, resp);
-    }
 }

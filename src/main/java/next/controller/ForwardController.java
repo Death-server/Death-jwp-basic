@@ -1,6 +1,6 @@
 package next.controller;
 
-import next.controller.Controller;
+import next.view.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +15,7 @@ public class ForwardController implements Controller {
         }
     }
     @Override
-    public String execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-        return forwardUrl;
+    public ModelAndView execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+        return jspView(forwardUrl);
     }
 }
