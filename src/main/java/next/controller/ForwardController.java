@@ -1,9 +1,11 @@
-package next.Controller;
+package next.controller;
+
+import next.controller.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ForwardController implements Controller{
+public class ForwardController implements Controller {
 
     private String forwardUrl;
     public ForwardController(String forwardUrl) {

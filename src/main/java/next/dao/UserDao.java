@@ -1,5 +1,7 @@
 package next.dao;
 
+import core.jdbc.JdbcTemplate;
+import core.jdbc.RowMapper;
 import next.exception.DataAccessException;
 import next.model.User;
 

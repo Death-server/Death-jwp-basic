@@ -1,6 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="header.jsp" %>
+<head>
+<%@ include file="/include/header.jspf" %>
+</head>
+
+<body>
+
+<%@ include file="/include/navigation.jspf" %>
 
 <div class="container" id="main">
     <div class="col-md-10 col-md-offset-1">
@@ -33,9 +39,7 @@
     </div>
 </div>
 
-<!-- script references -->
-<script src="../js/jquery-2.2.0.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/scripts.js"></script>
+<%@ include file="/include/footer.jspf" %>
+
 </body>
 </html>

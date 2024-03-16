@@ -1,6 +1,5 @@
-package next.dao;
+package core.jdbc;
 
-import core.jdbc.ConnectionManager;
 import next.exception.DataAccessException;
 
 import java.sql.Connection;
@@ -25,6 +24,23 @@ public class JdbcTemplate {
         }
     }
 
+    public void update(PreparedStatementCreator psc, KeyHolder holder) {
+        try (Connection conn = ConnectionManager.getConnection()) {
+            PreparedStatement ps = psc.createPreparedStatement(conn);
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                holder.setId(rs.getLong(1));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            throw new DataAccessException(e);
+        }
+    }
+
+
+
     private void setValuesForUpdate(PreparedStatement preparedStatement, PreparedStatementSetter pss) throws DataAccessException {
         try {
             pss.setValues(preparedStatement);
@@ -34,10 +50,13 @@ public class JdbcTemplate {
         }
     }
 
-    public <T> List<T> query(String sql, RowMapper<T> rowMapper) throws DataAccessException {
+    public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object... parameters) throws DataAccessException {
+        ResultSet rs;
+        PreparedStatementSetter pss = createPreparedStatementSetter(parameters);
         try (Connection con = ConnectionManager.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pss.setValues(pstmt);
+            rs =  pstmt.executeQuery();
             List<T> objects = new ArrayList<>();
             while (rs.next()) {
                 objects.add(rowMapper.mapRow(rs));

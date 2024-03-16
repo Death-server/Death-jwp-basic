@@ -1,12 +1,13 @@
-package next.Controller;
+package next.controller.user;
 
 import core.db.DataBase;
+import next.controller.Controller;
 import next.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UpdateUserController implements Controller{
+public class UpdateUserController implements Controller {
 
     @Override
     public String execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {

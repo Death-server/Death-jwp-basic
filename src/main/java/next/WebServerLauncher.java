@@ -13,9 +13,7 @@ public class WebServerLauncher {
         Tomcat tomcat = new Tomcat();
 
         tomcat.setPort(8080);
-        Connector connector = tomcat.getConnector();
-        connector.setURIEncoding("UTF-8");
-        tomcat.addWebapp("", new File(webappDirLocation).getAbsolutePath());
+        tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
 
         tomcat.start();
         tomcat.getServer().await();
