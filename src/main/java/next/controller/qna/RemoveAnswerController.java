@@ -2,6 +2,8 @@ package next.controller.qna;
 
 import next.controller.Controller;
 import next.dao.AnswerDao;
+import next.dao.QuestionDao;
+import next.model.Answer;
 import next.model.Result;
 import next.view.ModelAndView;
 import org.slf4j.Logger;
@@ -18,10 +20,15 @@ public class RemoveAnswerController implements Controller {
     public ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         AnswerDao answerDao = new AnswerDao();
-        Result result = answerDao.remove(Long.parseLong(req.getParameter("answerId").trim()));
-        log.error(req.getParameter("answerId"));
+        QuestionDao questionDao = new QuestionDao();
+        Long answerId = Long.parseLong(req.getParameter("answerId").trim());
+
+        Answer answer = answerDao.findById(answerId);
+        questionDao.update(answer.getQuestionId(), false);
+        Result result = answerDao.remove(answerId);
+        log.error(answerId.toString());
         log.error(result.toString());
 
-        return jsonView();
+        return jsonView().addObject("status", true);
     }
 }

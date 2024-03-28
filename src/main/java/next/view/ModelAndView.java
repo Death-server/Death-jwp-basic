@@ -1,6 +1,7 @@
 package next.view;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ModelAndView {
@@ -9,10 +10,11 @@ public class ModelAndView {
 
     public ModelAndView(View view) {
         this.view = view;
+        this.jsonData = new HashMap<>();
     }
 
     public ModelAndView addObject(String attributeName, Object attributeValue) {
-        jsonData.put(attributeName, attributeName);
+        jsonData.put(attributeName, attributeValue);
         return this;
     }
 

@@ -34,9 +34,17 @@
 					</div>
 					<div class="article-util">
 						<ul class="article-util-list">
-							<li>
-								<a class="link-modify-article" href="#">수정</a>
-							</li>
+								<c:choose>
+									<c:when test="${sessionScope.user.name eq question.writer}">
+									<li>
+										<form method="POST" action="/api/qna/updateForm">
+											<input type="hidden" name="questionId" id="questionId" value="${question.questionId}">
+											<button class="link-answer-article" type="submit">수정</button>
+										</form>
+									</li>
+									</c:when>
+								</c:choose>
+
 							<li>
 								<form class="form-delete" action="#" method="POST">
 									<input type="hidden" name="_method" value="DELETE">

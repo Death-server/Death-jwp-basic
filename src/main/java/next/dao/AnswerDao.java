@@ -13,7 +13,7 @@ import next.model.Result;
 
 public class AnswerDao {
     public Answer insert(Answer answer) {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        JdbcTemplate jdbcTemplate = JdbcTemplate.of();
         String sql = "INSERT INTO ANSWERS (writer, contents, createdDate, questionId) VALUES (?, ?, ?, ?)";
 
         PreparedStatementCreator psc = new PreparedStatementCreator() {
@@ -34,7 +34,7 @@ public class AnswerDao {
     }
 
     public Answer findById(long answerId) {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        JdbcTemplate jdbcTemplate = JdbcTemplate.of();
         String sql = "SELECT answerId, writer, contents, createdDate, questionId FROM ANSWERS WHERE answerId = ?";
 
         RowMapper<Answer> rm = new RowMapper<Answer>() {
@@ -49,7 +49,7 @@ public class AnswerDao {
     }
 
     public Result remove(long answerId) {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        JdbcTemplate jdbcTemplate = JdbcTemplate.of();
         String sql = "DELETE FROM ANSWERS WHERE answerId = ?";
         try {
             jdbcTemplate.update(sql, answerId);
@@ -60,7 +60,7 @@ public class AnswerDao {
     }
 
     public List<Answer> findAllByQuestionId(long questionId) {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        JdbcTemplate jdbcTemplate = JdbcTemplate.of();
         String sql = "SELECT answerId, writer, contents, createdDate FROM ANSWERS WHERE questionId = ? "
                 + "order by answerId desc";
 

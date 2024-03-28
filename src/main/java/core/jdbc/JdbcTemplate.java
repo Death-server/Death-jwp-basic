@@ -11,6 +11,12 @@ import java.util.List;
 
 public class JdbcTemplate {
 
+    private final static JdbcTemplate jdbcTemplate = new JdbcTemplate();
+    private JdbcTemplate() {}
+
+    public static JdbcTemplate of() {
+        return jdbcTemplate;
+    }
     public void update(String sql, Object... parameters) throws DataAccessException {
         PreparedStatementSetter pss = createPreparedStatementSetter(parameters);
         update(sql, pss);

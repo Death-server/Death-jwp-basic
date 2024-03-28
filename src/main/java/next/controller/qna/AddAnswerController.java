@@ -2,6 +2,7 @@ package next.controller.qna;
 
 import next.controller.Controller;
 import next.dao.AnswerDao;
+import next.dao.QuestionDao;
 import next.model.Answer;
 import next.view.ModelAndView;
 import org.slf4j.Logger;
@@ -22,7 +23,9 @@ public class AddAnswerController implements Controller {
         log.debug("answer : {}", answer);
 
         AnswerDao answerDao = new AnswerDao();
+        QuestionDao questionDao = new QuestionDao();
         Answer savedAnswer = answerDao.insert(answer);
+        questionDao.update(answer.getQuestionId(), true);
 
         return jsonView().addObject("answer", savedAnswer);
     }

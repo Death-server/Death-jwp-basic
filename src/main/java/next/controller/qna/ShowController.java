@@ -4,6 +4,7 @@ import next.controller.Controller;
 import next.dao.AnswerDao;
 import next.dao.QuestionDao;
 import next.view.ModelAndView;
+import next.view.View;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,8 +15,10 @@ public class ShowController implements Controller {
         Long questionId = Long.parseLong(req.getParameter("questionId"));
         QuestionDao questionDao = new QuestionDao();
         AnswerDao answerDao = new AnswerDao();
-        return jspView("/qna/show.jsp")
-                .addObject("question", questionDao.findById(questionId))
-                .addObject("answers", answerDao.findAllByQuestionId(questionId));
+        System.out.println("sss : " + questionDao.findById(questionId).getTitle());
+        ModelAndView view = jspView("/qna/show.jsp");
+        view.addObject("question", questionDao.findById(questionId));
+        view.addObject("answers", answerDao.findAllByQuestionId(questionId));
+        return view;
     }
 }
